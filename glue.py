@@ -3,31 +3,35 @@ from __future__ import unicode_literals
 from __future__ import print_function
 import pygame
 
+width = 320
+height = 240
+
 pygame.init()
 
 sections = [
 	{
 	'type' : "image",
 	'file': 'lin.jpg',
-	'caption': "下一任台灣女總統!?",
+	'caption': u"下一任台灣女總統!?",
 	},
 	{
 	'type' : "video",
 	'file' : 's.mpg',
-	'caption': "wow",
+	'caption': u"wow",
 	},
 	{
 	'type' : "video",
 	'file':'s.mpg',
-	'caption': "shit",
+	'caption': u"shit",
 	}
 ]
 
-FPS = 30
+font = pygame.font.Font('MSJH.TTF', 30) 
 
+FPS = 30
 clock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((320, 240))
+screen = pygame.display.set_mode((width, height))
 
 for section in sections:
 
@@ -38,7 +42,7 @@ for section in sections:
 		file_name = section['file']
 		movie = pygame.movie.Movie(file_name)
 
-		movie_screen = pygame.Surface((320, 240)).convert()
+		movie_screen = pygame.Surface((width, height)).convert()
 		movie.set_display(movie_screen)
 		movie.play()
 
@@ -66,7 +70,13 @@ for section in sections:
 			image = pygame.image.load(file_name)
 			image_rect = image.get_rect()
 
+			caption = section['caption']
+
+			text = font.render(caption, 1, (10, 10, 10))
+
 			screen.blit(image, (-1* tick,-1*tick))
+			screen.blit(text, (10, 150))
+
 			pygame.display.update()
 
 			clock.tick(FPS)
