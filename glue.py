@@ -10,21 +10,21 @@ pygame.init()
 
 sections = [
         {
-        'type' : "image",
-        'file': 'lin.jpg',
-        'caption': u"下一任台灣女總統!?",
-        },
+            'type' : "image",
+            'file': 'lin.jpg',
+            'caption': u"下一任台灣女總統!?",
+            },
         {
-        'type' : "video",
-        'file' : 's.mpg',
-        'caption': u"wow",
-        },
+            'type' : "video",
+            'file' : 's.mpg',
+            'caption': u"wow",
+            },
         {
-        'type' : "video",
-        'file':'s.mpg',
-        'caption': u"shit",
-        }
-]
+            'type' : "video",
+            'file':'s.mpg',
+            'caption': u"shit",
+            }
+        ]
 
 font = pygame.font.Font('MSJH.TTF', 30) 
 
@@ -35,24 +35,24 @@ screen = pygame.display.set_mode((width, height))
 
 for section in sections:
 
-        section_type = section['type']
+    section_type = section['type']
 
         if section_type == 'video':
 
-                file_name = section['file']
+            file_name = section['file']
+                pygame.mixer.quit()
                 movie = pygame.movie.Movie(file_name)
-
                 movie_screen = pygame.Surface((width, height)).convert()
                 movie.set_display(movie_screen)
                 movie.play()
 
                 while True:
-                        for event in pygame.event.get():
-                                if event.type == pygame.QUIT:
-                                        pygame.quit()  
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()  
 
                         if not movie.get_busy():
-                                break
+                            break
 
                         screen.blit(movie_screen,(0,0))
                         pygame.display.update()
@@ -61,10 +61,10 @@ for section in sections:
 
         elif section_type == 'image':
 
-                for tick in range(150):
-                        for event in pygame.event.get():
-                                if event.type == pygame.QUIT:
-                                        pygame.quit()  
+            for tick in range(150):
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()  
 
                         file_name = section['file']
                         image = pygame.image.load(file_name)
