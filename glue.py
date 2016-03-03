@@ -51,35 +51,33 @@ for section in sections:
                 if event.type == pygame.QUIT:
                     pygame.quit()  
 
-                if not movie.get_busy():
-                    break
+            if not movie.get_busy():
+                break
 
-                screen.blit(movie_screen,(0,0))
-                pygame.display.update()
+            screen.blit(movie_screen,(0,0))
+            pygame.display.update()
 
-                clock.tick(FPS)
+            clock.tick(FPS)
 
     elif section_type == 'image':
+
+        file_name = section['file']
+        image = pygame.image.load(file_name)
+        image_rect = image.get_rect()
+        caption = section['caption']
+        text = font.render(caption, 1, (10, 10, 10))
 
         for tick in range(150):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()  
 
-                    file_name = section['file']
-                    image = pygame.image.load(file_name)
-                    image_rect = image.get_rect()
+            screen.blit(image, (-1* tick,-1*tick))
+            screen.blit(text, (10, 150))
 
-                    caption = section['caption']
+            pygame.display.update()
 
-                    text = font.render(caption, 1, (10, 10, 10))
-
-                    screen.blit(image, (-1* tick,-1*tick))
-                    screen.blit(text, (10, 150))
-
-                    pygame.display.update()
-
-                    clock.tick(FPS)
+            clock.tick(FPS)
 
 
 
